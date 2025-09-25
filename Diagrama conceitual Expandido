@@ -1,0 +1,64 @@
+🧬 Ouroboros em Streaming com Kafka — Diagrama Conceitual Expandido
+
+1. Fontes de Dados
+> Sensores, logs, APIs, sistemas legados, eventos de usuários
+
+- Tipos: IoT, sistemas ERP, microserviços, bases de dados, eventos de front-end.
+- Formato: JSON, Avro, Protobuf, CSV.
+- Frequência: contínua, periódica ou sob demanda.
+- Função: gerar eventos brutos que alimentam o sistema.
+
+---
+
+2. Kafka Ingestion Layer
+> Producers, Topics, Partitions, Brokers
+
+- Producers: microserviços, conectores (Kafka Connect), scripts Python.
+- Topics: organizados por domínio (ex: sensor.temperature, user.clicks, model.feedback).
+- Partitions: paralelismo e escalabilidade.
+- Retention: configurado para manter histórico e permitir replay.
+- Schema Registry: validação de formatos e compatibilidade.
+
+---
+
+3. Stream Processing
+> Kafka Streams, Apache Flink, Spark Structured Streaming
+
+- Transformações: filtragem, agregações, joins, enriquecimento de dados.
+- Janela temporal: sliding, tumbling, session windows.
+- State Stores: armazenamento de estado local para cálculos complexos.
+- Exemplo: calcular média móvel de temperatura por dispositivo.
+
+---
+
+4. Adaptive Twin Engine
+> Modelos dinâmicos que simulam e aprendem com o sistema real
+
+- Digital Twin: representação virtual de entidades físicas ou lógicas.
+- Adaptativo: ajusta parâmetros com base em feedback e novos dados.
+- ML/IA: modelos supervisionados, reinforcement learning, embeddings.
+- RAG: busca contextual em bases externas para enriquecer decisões.
+- Exemplo: prever falha de máquina e ajustar parâmetros de operação.
+
+---
+
+5. Decision Layer
+> Regras, inferências, ações automatizadas
+
+- Motor de regras: lógica de negócios, limites, exceções.
+- Inferência de modelos: decisões baseadas em predições.
+- Ações: alertas, comandos para sistemas externos, atualizações de estado.
+- Exemplo: se risco de falha > 80%, enviar comando de shutdown preventivo.
+
+---
+
+6. Feedback Loop
+> Reinjeção de eventos no Kafka para fechar o ciclo
+
+- Eventos gerados: decisões, métricas, outputs de modelos.
+- Reinjeção: novos Producers publicam em tópicos de entrada.
+- Ciclo fechado: o sistema aprende com seus próprios outputs.
+- Controle de loop: mecanismos para evitar loops infinitos ou degenerativos.
+
+---
+
